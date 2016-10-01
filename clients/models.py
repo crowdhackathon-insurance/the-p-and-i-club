@@ -8,6 +8,7 @@ from companies.models import ProposalFormField
 
 class Client(models.Model):
     name = models.CharField(max_length=255)
+    verified = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name

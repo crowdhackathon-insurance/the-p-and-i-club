@@ -18,9 +18,11 @@ from django.contrib import admin
 
 from brokers.views import display_proposal_form
 from brokers.views import display_proposal_form_submission
+from clients.views import verify_client
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^proposal_forms/(?P<proposal_form_id>\d+)/?$', display_proposal_form),
     url(r'^submissions/(?P<submission_id>\d+)/?$', display_proposal_form_submission),
+    url(r'^verify_client/(?P<client_id>\d+)/?$', verify_client),
 ]

@@ -1,0 +1,22 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Πιστοποίηση πελάτη: {{ client.name }}</title>
+        <link rel="stylesheet" href="{% static 'brokers/bower_components/bootstrap/dist/css/bootstrap.min.css' %}" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Πιστοποίηση πελάτη: {{ client.name }}</h1>
+            <iframe src="https://appear.in/skatoulitsa-skatouli" width="800" height="640" frameborder="0"></iframe>
+            <form action="" method="POST" >
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <input class="btn btn-success" type="submit" value="Πιστοποίηση πελάτη">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
