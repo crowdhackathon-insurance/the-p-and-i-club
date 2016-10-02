@@ -25,6 +25,8 @@ class ProposalFormSubmission(models.Model):
     client = models.ForeignKey(Client)
     proposal_form = models.ForeignKey(ProposalForm)
     submitted_on = models.DateTimeField(auto_now_add=True)
+    plain_txt = models.CharField(max_length=65535, null=True)
+    plain_txt_signed = models.CharField(max_length=65535, null=True)
 
     def __unicode__(self):
         return '%s submission of "%s"' % (self.client, self.proposal_form)

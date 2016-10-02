@@ -51,3 +51,13 @@ def display_proposal_form_submission(request, submission_id):
         )
     }
     return render(request, 'brokers/proposal_form_submission.html', data)
+
+def display_proposal_form_submission_txt(request, submission_id):
+    submission = ProposalFormSubmission.objects.get(id=submission_id)
+    data = {
+        'proposal_form_submission': submission,
+        'fields': ProposalFormSubmissionField.objects.filter(
+            proposal_form_submission=submission
+        )
+    }
+    return render(request, 'brokers/proposal_form_submission.txt', data, content_type='text/plain; charset=utf-8')

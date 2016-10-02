@@ -1,0 +1,6 @@
+ID Αίτησης: {{ proposal_form_submission.id }}
+ID Πελάτη: {{ proposal_form_submission.client.id }}
+
+{% for field in fields %}
+{{ field.field.title }}: {{ field.value }}
+{% endfor %}
