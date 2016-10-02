@@ -2,6 +2,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 
 from django.http import HttpResponse
+from django.template import loader
 
 from clients.models import Client
 from clients.models import ProposalFormSubmission
@@ -27,6 +28,16 @@ def display_proposal_form(request, proposal_form_id):
                 field=field,
                 value=request.POST['%s' % field.id]
             )
+        submission.plain_txt = loader.render_to_string(
+            'brokers/proposal_form_submission.txt',
+            {
+                'proposal_form_submission': submission,
+                'fields': ProposalFormSubmissionField.objects.filter(
+                    proposal_form_submission=submission
+                )
+            }
+        )
+        submission.save()
         response = redirect(
             display_proposal_form_submission, submission_id=submission.id
         )
@@ -54,10 +65,4 @@ def display_proposal_form_submission(request, submission_id):
 
 def display_proposal_form_submission_txt(request, submission_id):
     submission = ProposalFormSubmission.objects.get(id=submission_id)
-    data = {
-        'proposal_form_submission': submission,
-        'fields': ProposalFormSubmissionField.objects.filter(
-            proposal_form_submission=submission
-        )
-    }
-    return render(request, 'brokers/proposal_form_submission.txt', data, content_type='text/plain; charset=utf-8')
+    return HttpResponse(submission.plain_txt, content_type='text/plain; charset=utf-8')
