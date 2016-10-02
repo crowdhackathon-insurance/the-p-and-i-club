@@ -9,7 +9,7 @@
     <body>
         <div class="container">
             <h1>Πιστοποίηση πελάτη: {{ client.name }}</h1>
-            <iframe src="https://appear.in/skatoulitsa-skatouli" width="800" height="640" frameborder="0"></iframe>
+            <iframe src="https://appear.in/insurer-verify-client-{{ client.id }}" width="800" height="640" frameborder="0"></iframe>
             <form action="" method="POST" >
                 {% csrf_token %}
 
