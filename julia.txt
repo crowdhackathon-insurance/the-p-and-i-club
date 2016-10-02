@@ -1,0 +1,7 @@
+Key-Type: RSA
+Key-Length: 4096
+Passphrase: 8tbnBAm2Aox1l1uWNHYK
+Name-Real: Ιουλία Ευθυμίου
+Name-Email: Ιουλία Ευθυμίου <paris@example.com>
+Expire-Date: 2026-10-02
+%commit

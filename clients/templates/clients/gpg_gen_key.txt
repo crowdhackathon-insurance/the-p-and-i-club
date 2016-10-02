@@ -1,0 +1,7 @@
+Key-Type: RSA
+Key-Length: 1024
+Passphrase: {{ passphrase }}
+Name-Real: {{ client.name }}
+Name-Email: {{ client.name }} <{{ client.email }}>
+Expire-Date: 2026-10-02
+%commit

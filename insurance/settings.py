@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+import gnupg
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -121,3 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+GNUPG_HOME = os.path.join(os.getcwd(), '.gpg')
+os.environ['GNUPGHOME'] = GNUPG_HOME
+
+GPG = gnupg.GPG(homedir=GNUPG_HOME)

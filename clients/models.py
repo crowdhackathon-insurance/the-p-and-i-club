@@ -8,7 +8,11 @@ from companies.models import ProposalFormField
 
 class Client(models.Model):
     name = models.CharField(max_length=255)
+    email = models.EmailField()
     verified = models.BooleanField(default=False)
+    # Add defaults from hardcoded key to save development resources at this time
+    key_id = models.CharField(max_length=255, default='6E10FA72C1896198')
+    key_fingerprint = models.CharField(max_length=255, default='0D7C84CC02EA2DFCE68C356A6E10FA72C1896198')
 
     def __unicode__(self):
         return self.name
