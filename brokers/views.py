@@ -46,6 +46,10 @@ def display_proposal_form(request, proposal_form_id):
             default_key=client.key_id,
             passphrase=request.POST['passphrase']
         )
+        if signature.data == '':
+            raise Exception(
+                'Could not sign document! Error: %s' % signature.status
+            )
         submission.plain_txt_signed = signature.data
         submission.save()
         response = redirect(
