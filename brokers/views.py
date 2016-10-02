@@ -1,7 +1,7 @@
+from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
-
-from django.http import HttpResponse
 from django.template import loader
 
 from clients.models import Client
@@ -9,6 +9,9 @@ from clients.models import ProposalFormSubmission
 from clients.models import ProposalFormSubmissionField
 from companies.models import ProposalForm
 from companies.models import ProposalFormField
+
+
+gpg = settings.GPG
 
 
 def display_proposal_form(request, proposal_form_id):
@@ -37,6 +40,13 @@ def display_proposal_form(request, proposal_form_id):
                 )
             }
         )
+
+        signature = gpg.sign(
+            submission.plain_txt,
+            default_key=client.key_id,
+            passphrase=request.POST['passphrase']
+        )
+        submission.plain_txt_signed = signature.data
         submission.save()
         response = redirect(
             display_proposal_form_submission, submission_id=submission.id
